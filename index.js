@@ -407,4 +407,3 @@ updateManager = () => {
   });
 };
 
-
