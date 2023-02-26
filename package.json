@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "console.table": "^0.10.0",
-    "inquirer": "^9.1.4",
+    "inquirer": "^8.2.5",
     "mysql": "^2.18.1",
     "mysql2": "^3.1.2"
   },

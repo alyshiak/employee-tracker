@@ -4,12 +4,12 @@ const cTable = require('console.table');
 
 
 // connect to your db
-const db = mysql.createConnection(
+const connection = mysql.createConnection(
     {
       host: 'localhost',
       user: 'root',
       password: 'Pudding98.',
-      database: 'employee_db'
+      database: 'employee_db',
     },
     console.log(`Connected to the employee_db database.`)
   );
@@ -101,7 +101,7 @@ const promptUser = () => {
 
 showDepartments = () => {
   console.log('Showing all departments...\n');
-  const sql = `SELECT department.id AS id, department.name AS department FROM department`; 
+  const sql = `SELECT department.id AS id, department.department_name AS department FROM department`; 
 
   connection.promise().query(sql, (err, rows) => {
     if (err) throw err;
@@ -113,7 +113,7 @@ showDepartments = () => {
 showRoles = () => {
   console.log('Showing all roles...\n');
 
-  const sql = `SELECT role.id, role.title, department.name AS department
+  const sql = `SELECT role.id, role.title, department.department_name AS department
                FROM role
                INNER JOIN department ON role.department_id = department.id`;
   
@@ -130,7 +130,7 @@ showEmployees = () => {
                       employee.first_name, 
                       employee.last_name, 
                       role.title, 
-                      department.name AS department,
+                      department.department_name AS department,
                       role.salary, 
                       CONCAT (manager.first_name, " ", manager.last_name) AS manager
                FROM employee
@@ -162,7 +162,7 @@ addDepartment = () => {
     }
   ])
     .then(answer => {
-      const sql = `INSERT INTO department (name)
+      const sql = `INSERT INTO department (department_name)
                   VALUES (?)`;
       connection.query(sql, answer.addDept, (err, result) => {
         if (err) throw err;
