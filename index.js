@@ -41,13 +41,11 @@ connection.connect(err => {
   afterConnection();
 });
 
-// function after connection is established and welcome image shows 
 afterConnection = () => {
   console.log("EMPLOYEE MANAGER")
   promptUser();
 };
 
-// inquirer prompt for first action
 const promptUser = () => {
   inquirer.prompt ([
     {
